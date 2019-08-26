@@ -234,18 +234,17 @@ def winning_team
 end
 
 def player_with_longest_name
-  longest_name_length = 0 
-  longest_name = ""
-  game_hash.reduce({}) do |memo, (key, value)|
-    a = game_hash[key]  
-    a[:players].reduce({}) do |memo, (key, value)|
-      if key.length > longest_name_length
-        longest_name_length = key.length
-        longest_name = key
+  name_length = 0
+  longest_name_player = nil
+  game_hash.each do |team, info|
+    info[:players].each do |players, stats|
+      if players.length > name_length
+        name_length = players.length
+        longest_name_player = players
       end
     end
   end
-  return longest_name
+  longest_name_player
 end
 
 def long_name_steals_a_ton?
