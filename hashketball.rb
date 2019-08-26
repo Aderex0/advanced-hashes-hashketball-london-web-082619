@@ -249,10 +249,10 @@ end
 
 def long_name_steals_a_ton?
   name_with_steal = nil
-  steal_number = 0
-  game_hash.each do |location, team_data|
-    team_data[:players].each do |name, value|
-      if value[:steals] > steal_number
+  steals = 0
+  game_hash.each do |team, info|
+    info[:players].each do |players, stats|
+      if players[:steals] > steal_number
         steal_number = value[:steals]
         name_with_steal = name
       end
